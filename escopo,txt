@@ -1,0 +1,26 @@
+project-root/
+├── main.tf                  # Arquivo principal para orquestrar recursos e configurações.
+├── variables.tf             # Declaração de variáveis usadas em todo o projeto.
+├── terraform.tfvars         # Definição dos valores para as variáveis do projeto.
+├── outputs.tf               # Saídas para recursos importantes (ex.: ALB DNS, IPs públicos).
+├── provider.tf              # Configuração do provedor AWS e região.
+├── vpc/
+│   ├── vpc.tf               # Configurações da VPC principal.
+│   ├── subnet.tf            # Configuração de sub-redes públicas e privadas.
+│   └── security_group.tf    # Configuração de Security Groups para EC2, ALB, RDS, etc.
+├── alb/
+│   ├── load_balancer.tf     # Configuração do Application Load Balancer.
+│   ├── target_group.tf      # Configuração do Target Group.
+│   └── listener.tf          # Configuração dos Listeners e regras de roteamento.
+├── ec2/
+│   ├── autoscaling.tf       # Configuração do Auto Scaling Group.
+│   ├── launch_template.tf   # Template de lançamento para instâncias EC2 do WordPress.
+│   └── user_data.sh         # Script para configuração inicial das instâncias WordPress.
+├── efs/
+│   ├── efs.tf               # Configuração do Amazon EFS.
+│   └── efs_mount.tf         # Configuração de pontos de montagem e permissões.
+├── rds/
+│   └── rds.tf               # Configuração da instância RDS para o banco de dados do WordPress.
+└── scripts/
+    ├── wordpress_setup.sh   # Script de setup do WordPress (ex.: configurações iniciais).
+    └── additional_script.sh # Outros scripts necessários para as instâncias.
