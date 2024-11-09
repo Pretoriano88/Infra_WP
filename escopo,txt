@@ -24,3 +24,6 @@ project-root/
 └── scripts/
     ├── wordpress_setup.sh   # Script de setup do WordPress (ex.: configurações iniciais).
     └── additional_script.sh # Outros scripts necessários para as instâncias.
+
+
+

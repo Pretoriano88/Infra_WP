@@ -53,3 +53,31 @@ variable "igw_tags" {
 
 
 
+//ec2 variables
+variable "key_name" {
+  description = "name key"
+  type = string
+  default = "my-key-pair"
+  
+}
+
+variable "public_key" {
+  description = "path file"
+  type = string
+  default = "C:/Users/Praetorian/Desktop/Infra aws/ch/my-key-pair.pub"
+  
+}
+
+variable "ami" {
+  description = "The AMI for the EC2 instance"
+  type        = string
+  default     = "ami-07d9b9ddc6cd8dd30"
+}
+
+variable "instance_type" {
+  description = "The instance type for the EC2 instance"
+  type        = string
+  default     = "t3.micro"
+}
+
+
