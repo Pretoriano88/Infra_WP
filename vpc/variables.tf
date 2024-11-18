@@ -12,22 +12,27 @@ variable "subnet_cidr_public_a" {
 variable "subnet_cidr_public_b" {
   description = "The CIDR block for the subnet"
   type        = string
-}       
+}
 variable "subnet_cidr_private_a" {
   description = "The CIDR block for the subnet"
   type        = string
-}       
+}
 variable "subnet_cidr_private_b" {
   description = "The CIDR block for the subnet"
   type        = string
-}       
+}
 
 variable "region" {
   description = "AWS Region"
-  type = string
+  type        = string
 }
 
 variable "map_public_ip_on_launch" {
   description = "Whether to map public IP on launch"
   type        = bool
+}
+
+variable "enviroment" {
+  description = "tags"
+  type        = string
 }

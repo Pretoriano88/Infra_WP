@@ -16,11 +16,11 @@ variable "subnet_id" {
 
 variable "vpc_security_group_id" {
   description = "value"
-  type = string
-  
+  type        = string
+
 }
 
 variable "key_name" {
   type = string
-  
+
 }

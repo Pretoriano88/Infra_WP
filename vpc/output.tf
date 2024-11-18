@@ -17,5 +17,13 @@ output "subnet_public_b_id" {
 
 
 output "security_group_pritunl_id" {
-    value = aws_security_group.pritunl_sg.id
+  value = aws_security_group.pritunl_sg.id
+}
+
+output "security_group_rds_id" {
+  value = aws_security_group.allow_rds.id
+}
+
+output "subnet_group_name" {
+  value = aws_db_subnet_group.db_subnet_group.name
 }

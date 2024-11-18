@@ -10,13 +10,14 @@ module "vpc" {
   cidr_block = var.vpc_cidr
 
   # Subnet variables
-  subnet_cidr_public_a = var.subnet_cidr_public_a
-  subnet_cidr_public_b = var.subnet_cidr_public_b
+  subnet_cidr_public_a  = var.subnet_cidr_public_a
+  subnet_cidr_public_b  = var.subnet_cidr_public_b
   subnet_cidr_private_a = var.subnet_cidr_private_a
   subnet_cidr_private_b = var.subnet_cidr_private_b
-  region = var.region
+  region                = var.region
   //igw
   map_public_ip_on_launch = var.map_public_ip_on_launch
+  enviroment              = var.enviroment
 
 }
 
@@ -31,25 +32,45 @@ resource "aws_key_pair" "key_pair_pritunl" {
 module "ec2_docker" {
   source = "./ec2_docker"
 
-  ami = var.ami
-  instance_type = var.instance_type
-  subnet_id = module.vpc.subnet_private_b_id
+  ami                   = var.ami
+  instance_type         = var.instance_type
+  subnet_id             = module.vpc.subnet_private_b_id
   vpc_security_group_id = module.vpc.security_group_docker_id
-  key_name = var.key_name
-  
- 
+  key_name              = var.key_name
+
+
 }
 
 module "ec2_pritunl" {
   source = "./ec2_pritunl"
 
-  ami = var.ami
-  instance_type = var.instance_type
-  subnet_id = module.vpc.subnet_public_b_id
-  vpc_security_group_id = module.vpc.security_group_pritunl_id  
-  key_name = var.key_name
-  
-  
- 
+  ami                   = var.ami
+  instance_type         = var.instance_type
+  subnet_id             = module.vpc.subnet_public_b_id
+  vpc_security_group_id = module.vpc.security_group_pritunl_id
+  key_name              = var.key_name
+
+
+
 }
 
+// RDS module 
+
+module "rds" {
+  source = "./data_base"
+
+  allo_stora            = var.allo_stora
+  dbname                = var.dbname
+  engine                = var.engine
+  v_engine              = var.v_engine
+  classinstance         = var.classinstance
+  user                  = var.user
+  password              = var.password
+  port                  = var.port
+  parameter_group_name  = var.parameter_group_name
+  skip_final_snapshot   = var.skip_final_snapshot
+  multi_az              = var.multi_az
+  security_group_id = module.vpc.security_group_rds_id
+  db_subnet_group  = module.vpc.subnet_group_name
+
+}
