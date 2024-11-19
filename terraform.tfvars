@@ -8,5 +8,5 @@ user                 = "elfos"            # Nome de usuário do banco de dados
 password             = "elfos123"         # Senha do banco de dados
 parameter_group_name = "default.mysql8.0" # Grupo de parâmetros do RDS
 port                 = 3306               # Porta usada pelo banco de dados
-skip_final_snapshot = true
-multi_az = true
+skip_final_snapshot  = true
+multi_az             = true

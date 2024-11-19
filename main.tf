@@ -59,18 +59,18 @@ module "ec2_pritunl" {
 module "rds" {
   source = "./data_base"
 
-  allo_stora            = var.allo_stora
-  dbname                = var.dbname
-  engine                = var.engine
-  v_engine              = var.v_engine
-  classinstance         = var.classinstance
-  user                  = var.user
-  password              = var.password
-  port                  = var.port
-  parameter_group_name  = var.parameter_group_name
-  skip_final_snapshot   = var.skip_final_snapshot
-  multi_az              = var.multi_az
-  security_group_id = module.vpc.security_group_rds_id
-  db_subnet_group  = module.vpc.subnet_group_name
+  allo_stora           = var.allo_stora
+  dbname               = var.dbname
+  engine               = var.engine
+  v_engine             = var.v_engine
+  classinstance        = var.classinstance
+  user                 = var.user
+  password             = var.password
+  port                 = var.port
+  parameter_group_name = var.parameter_group_name
+  skip_final_snapshot  = var.skip_final_snapshot
+  multi_az             = var.multi_az
+  security_group_id    = module.vpc.security_group_rds_id
+  db_subnet_group      = module.vpc.subnet_group_name
 
 }

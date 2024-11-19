@@ -31,13 +31,12 @@ resource "aws_launch_template" "wordpress_lt" {
 
   # Script de inicialização (user_data) que configura o ambiente WordPress nas instâncias
   user_data = base64encode(
-    templatefile("ec2Wordpress.sh", {                                                       # Arquivo de script externo que será executado no lançamento da instância
-      wp_db_name       = aws_db_instance.bdword.db_name,                                    # Nome do banco de dados do WordPress
-      wp_username      = aws_db_instance.bdword.username,                                   # Nome do usuário do banco de dados
-      wp_user_password = aws_db_instance.bdword.password,                                   # Senha do usuário do banco de dados
-      wp_db_host       = aws_db_instance.bdword.address,                                    # Endereço do banco de dados RDS
-      aws_elasticache  = "${aws_elasticache_cluster.cache_cluster.cache_nodes[0].address}", # Endereço do ElastiCache (usado para cache de página)
-      efs_dns_name     = "${aws_efs_file_system.file_system_1.dns_name}"                    # Nome DNS do sistema de arquivos EFS compartilhado
+    templatefile("ec2Wordpress.sh", {                     # Arquivo de script externo que será executado no lançamento da instância
+      wp_db_name       = aws_db_instance.bdword.db_name,  # Nome do banco de dados do WordPress
+      wp_username      = aws_db_instance.bdword.username, # Nome do usuário do banco de dados
+      wp_user_password = aws_db_instance.bdword.password, # Senha do usuário do banco de dados
+      wp_db_host       = aws_db_instance.bdword.address,  # Endereço do banco de dados RDS
+      # Nome DNS do sistema de arquivos EFS compartilhado
     })
   )
 }

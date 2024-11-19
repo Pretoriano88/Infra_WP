@@ -15,7 +15,7 @@ resource "aws_db_instance" "bdword" {
   // Qual security group meu rdsficará 
   vpc_security_group_ids = [var.security_group_id]
 
-  
+
 
   # Certificando que as alterações manuais de senha rds sejam ignoradas
   lifecycle {
