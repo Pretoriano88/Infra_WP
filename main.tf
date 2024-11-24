@@ -57,16 +57,16 @@ module "ec2_pritunl" {
 module "autoscaling_template" {
   source = "./autoscaling+template"
 
-  ami = var.ami
-  key_name = var.key_name
-  instance_type = var.instance_type
-  subnet_public_a = module.vpc.subnet_public_a_id
-  subnet_public_b = module.vpc.subnet_public_b_id
+  ami               = var.ami
+  key_name          = var.key_name
+  instance_type     = var.instance_type
+  subnet_public_a   = module.vpc.subnet_public_a_id
+  subnet_public_b   = module.vpc.subnet_public_b_id
   security_group_id = module.vpc.security_group_ec2_wordpress_id
-  dbname = var.dbname
-  user = var.user
-  password = var.password
-  bd_adress = module.rds.bd_adress
+  dbname            = var.dbname
+  user              = var.user
+  password          = var.password
+  bd_adress         = module.rds.bd_adress
 
 }
 
