@@ -10,8 +10,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
   min_size = 2
 
   # Identificadores das subnets onde as instâncias serão lançadas, deve ser em subnets públicas para permitir acesso externo
-  vpc_zone_identifier = [aws_subnet.subnet-public-1a.id, aws_subnet.subnet-public-1b.id]
-
+  vpc_zone_identifier = [var.subnet_public_a, var.subnet_public_b]
   # Template de lançamento que define a configuração de instâncias EC2
   launch_template {
     # ID do template de lançamento (referenciado abaixo)
@@ -21,26 +20,9 @@ resource "aws_autoscaling_group" "wordpress_asg" {
     version = "$Latest"
   }
 
-  # Tags que serão aplicadas às instâncias EC2 geradas pelo Auto Scaling
-  tag {
-    key                 = "Name"
-    value               = local.instance_name # Usando uma variável local para definir o nome da instância
-    propagate_at_launch = true                # Propaga essa tag no momento do lançamento da instância
-  }
 
-  # Tag para o ambiente das instâncias (produção)
-  tag {
-    key                 = "Environment"
-    value               = "Production"
-    propagate_at_launch = true # Propaga a tag na criação das instâncias
-  }
 
-  # Tag para identificar a aplicação rodando nas instâncias
-  tag {
-    key                 = "Application"
-    value               = "WordPress"
-    propagate_at_launch = true # Propaga a tag na criação das instâncias
-  }
+
 }
 
 
