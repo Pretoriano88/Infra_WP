@@ -31,12 +31,12 @@ resource "aws_launch_template" "wordpress_lt" {
 
   # Script de inicialização (user_data) que configura o ambiente WordPress nas instâncias
   user_data = base64encode(
-  templatefile("${path.module}/../scripts/ec2_wordpress.sh", {       # Arquivo de script externo que será executado no lançamento da instância
-    wp_db_name       = var.dbname,        # Nome do banco de dados do WordPress
-    wp_username      = var.user,          # Nome do usuário do banco de dados
-    wp_user_password = var.password,      # Senha do usuário do banco de dados
-    wp_db_host       = var.bd_adress      # Endereço do banco de dados RDS
-  })
-)
+    templatefile("${path.module}/../scripts/ec2_wordpress.sh", { # Arquivo de script externo que será executado no lançamento da instância
+      wp_db_name       = var.dbname,                             # Nome do banco de dados do WordPress
+      wp_username      = var.user,                               # Nome do usuário do banco de dados
+      wp_user_password = var.password,                           # Senha do usuário do banco de dados
+      wp_db_host       = var.bd_adress                           # Endereço do banco de dados RDS
+    })
+  )
 
 }

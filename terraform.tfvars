@@ -16,21 +16,21 @@ igw_tags = "main-igw"
 
 // EC2 Configuration
 key_name      = "my-key-pair"
-public_key    = "C:/Users/Praetorian/Desktop/Infra aws/ch/my-key-pair.pub"
+public_key    = "C:/Users/Praetorian/Desktop/Infra aws - Copia/ch/my-key-pair.pub"
 ami           = "ami-07d9b9ddc6cd8dd30"
 instance_type = "t3.micro"
 enviroment    = "infra-aws"
 
 
 // RDS Variables
-allo_stora = 20 // Allocated storage space (in GB)
-dbname = "my_database" // Name of the database
-engine = "postgres" // Database engine
-v_engine = "14.0" // Database engine version
-classinstance = "db.t3.micro" // RDS instance class
-user = "admin" // Database username
-password = "securepassword" // Database password
+allo_stora           = 20                   // Allocated storage space (in GB)
+dbname               = "my_database"        // Name of the database
+engine               = "postgres"           // Database engine
+v_engine             = "14.0"               // Database engine version
+classinstance        = "db.t3.micro"        // RDS instance class
+user                 = "admin"              // Database username
+password             = "securepassword"     // Database password
 parameter_group_name = "default.postgres14" // RDS parameter group name
-port = 5432 // Port used by the database
-skip_final_snapshot = true // Skip final snapshot upon RDS deletion
-multi_az = false // Enable Multi-AZ deployment
+port                 = 5432                 // Port used by the database
+skip_final_snapshot  = true                 // Skip final snapshot upon RDS deletion
+multi_az             = false                // Enable Multi-AZ deployment

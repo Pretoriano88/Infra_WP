@@ -21,6 +21,13 @@ module "vpc" {
 
 }
 
+/*
+create key pair linux
+ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+
+windows(PowerShell)
+ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+*/
 
 resource "aws_key_pair" "key_pair_pritunl" {
   key_name   = var.key_name
@@ -53,7 +60,7 @@ module "ec2_pritunl" {
 
 
 }
-
+/*
 module "autoscaling_template" {
   source = "./autoscaling+template"
 
@@ -69,9 +76,9 @@ module "autoscaling_template" {
   bd_adress         = module.rds.bd_adress
 
 }
-
+*/
 // RDS module 
-
+/*
 module "rds" {
   source = "./rds"
 
@@ -89,4 +96,11 @@ module "rds" {
   security_group_id    = module.vpc.security_group_rds_id
   db_subnet_group      = module.vpc.subnet_group_name
 
+}
+*/
+module "efs" {
+  source = "./efs"
+
+  subnet_public_id_a = module.vpc.subnet_public_a_id
+  subnet_public_id_b = module.vpc.subnet_public_b_id
 }

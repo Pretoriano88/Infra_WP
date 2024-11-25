@@ -42,6 +42,7 @@ Prepare o ambiente do Terraform:
 ```bash
 $ terraform init
 ```
+### Se não quiser usar algum recurso, basta apenas comentar usando /* */ no main, para que o terraform não chame determinado modulo, lembrando que alguns modeulos dependem do outro, exemplo: modulo autoscaling+template depende do modulo Rds  
 
 ### Passo 4: Planejar a Infraestrutura
 Verifique os recursos que serão criados:
@@ -62,7 +63,7 @@ Após o provisionamento, acesse o IP público da instância pelo navegador para 
 ## Configuração da VPN com Pritunl
 1. Acesse a instância que hospeda o Pritunl:
    ```bash
-   ssh -i "chave_privada.pem" ubuntu@<ip_da_instancia>
+   ssh -i "my-key-pair.pem" ubuntu@<ip_da_instancia>
    ```
 2. Gere a chave de configuração inicial:
    ```bash
