@@ -23,14 +23,15 @@ enviroment    = "infra-aws"
 
 
 // RDS Variables
-allo_stora           = 20                   // Allocated storage space (in GB)
-dbname               = "my_database"        // Name of the database
-engine               = "postgres"           // Database engine
-v_engine             = "14.0"               // Database engine version
-classinstance        = "db.t3.micro"        // RDS instance class
-user                 = "admin"              // Database username
-password             = "securepassword"     // Database password
-parameter_group_name = "default.postgres14" // RDS parameter group name
-port                 = 5432                 // Port used by the database
-skip_final_snapshot  = true                 // Skip final snapshot upon RDS deletion
-multi_az             = false                // Enable Multi-AZ deployment
+
+allo_stora           = 10                 // Allocated storage space (in GB)
+dbname               = "bdwordpress"      // Name of the database
+engine               = "mysql"            // Database engine 
+v_engine             = "8.0"              // Database engine version
+classinstance        = "db.t3.micro"      // RDS instance class
+user                 = "elfos"            // Database username
+password             = "elfos123"         // Database password
+parameter_group_name = "default.mysql8.0" // RDS parameter group name
+port                 = 3306               // Port used by the databases
+skip_final_snapshot  = true               // Skip final snapshot upon RDS deletion
+multi_az             = false              // Enable Multi-AZ deployment

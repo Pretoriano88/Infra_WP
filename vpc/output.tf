@@ -41,3 +41,8 @@ output "subnet_group_name" {
 output "security_group_ec2_wordpress_id" {
   value = aws_security_group.ec2-wordpress.id
 }
+
+
+output "security_group_efs_id" {
+  value = aws_security_group.efs_sg.id
+}

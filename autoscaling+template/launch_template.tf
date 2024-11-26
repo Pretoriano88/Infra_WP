@@ -36,6 +36,7 @@ resource "aws_launch_template" "wordpress_lt" {
       wp_username      = var.user,                               # Nome do usuário do banco de dados
       wp_user_password = var.password,                           # Senha do usuário do banco de dados
       wp_db_host       = var.bd_adress                           # Endereço do banco de dados RDS
+      efs_dns_name     = var.efs_dns_name
     })
   )
 

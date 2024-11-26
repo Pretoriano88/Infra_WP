@@ -60,7 +60,7 @@ module "ec2_pritunl" {
 
 
 }
-/*
+
 module "autoscaling_template" {
   source = "./autoscaling+template"
 
@@ -74,11 +74,12 @@ module "autoscaling_template" {
   user              = var.user
   password          = var.password
   bd_adress         = module.rds.bd_adress
+  efs_dns_name      = module.efs.efs_dns_name
 
 }
-*/
+
 // RDS module 
-/*
+
 module "rds" {
   source = "./rds"
 
@@ -97,10 +98,11 @@ module "rds" {
   db_subnet_group      = module.vpc.subnet_group_name
 
 }
-*/
+
 module "efs" {
   source = "./efs"
 
-  subnet_public_id_a = module.vpc.subnet_public_a_id
-  subnet_public_id_b = module.vpc.subnet_public_b_id
+  subnet_public_id_a    = module.vpc.subnet_public_a_id
+  subnet_public_id_b    = module.vpc.subnet_public_b_id
+  security_group_efs_id = module.vpc.security_group_efs_id
 }

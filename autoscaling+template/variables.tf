@@ -47,3 +47,6 @@ variable "bd_adress" {
   type = string
 }
 
+variable "efs_dns_name" {
+
+}
