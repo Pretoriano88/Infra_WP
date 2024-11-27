@@ -108,6 +108,7 @@ module "efs" {
   security_group_efs_id = module.vpc.security_group_efs_id
 }
 
+/*
 module "elasticache" {
   source = "./elasticache"
 
@@ -116,3 +117,4 @@ module "elasticache" {
   security_group_memcached = module.vpc.security_group_memcached_id
 
 }
+*/

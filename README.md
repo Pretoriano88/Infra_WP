@@ -84,13 +84,16 @@ Após o provisionamento, acesse o IP público da instância pelo navegador para 
 
 ### Passo 7: Configurar as Variáveis
 ```bash
-$ terraform destroy "
+$ terraform destroy 
 ```
 Confirme a execução digitando `yes` quando solicitado.
 
 
 ## Observações Finais
-Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar  ```
+
+![alt text](image.png)
+
+Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar 
 
 
 ---
