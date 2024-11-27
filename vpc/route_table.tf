@@ -7,3 +7,14 @@ resource "aws_route_table" "this" {
   }
 
 }
+
+
+# Criar uma tabela de rotas para a subnet privada
+resource "aws_route_table" "private_route_table" {
+  vpc_id = aws_vpc.this.id # Altere para o ID do seu VPC
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gateway.id # Rota padrão para o NAT Gateway
+  }
+}

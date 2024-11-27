@@ -50,3 +50,7 @@ variable "bd_adress" {
 variable "efs_dns_name" {
 
 }
+
+variable "elasticache_address" {
+
+}

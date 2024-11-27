@@ -9,7 +9,7 @@ output "subnet_public_b_id" {
   value = aws_subnet.public_b.id
 }
 
-output "subnet_cidr_private_a_id" {
+output "subnet_private_a_id" {
   value = aws_subnet.private_a.id
 }
 
@@ -45,4 +45,8 @@ output "security_group_ec2_wordpress_id" {
 
 output "security_group_efs_id" {
   value = aws_security_group.efs_sg.id
+}
+
+output "security_group_memcached_id" {
+  value = aws_security_group.memcached_sg.id
 }

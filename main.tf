@@ -56,7 +56,7 @@ module "ec2_pritunl" {
   subnet_id             = module.vpc.subnet_public_b_id
   vpc_security_group_id = module.vpc.security_group_pritunl_id
   key_name              = var.key_name
-
+  enviroment            = var.enviroment
 
 
 }
@@ -64,17 +64,18 @@ module "ec2_pritunl" {
 module "autoscaling_template" {
   source = "./autoscaling+template"
 
-  ami               = var.ami
-  key_name          = var.key_name
-  instance_type     = var.instance_type
-  subnet_public_a   = module.vpc.subnet_public_a_id
-  subnet_public_b   = module.vpc.subnet_public_b_id
-  security_group_id = module.vpc.security_group_ec2_wordpress_id
-  dbname            = var.dbname
-  user              = var.user
-  password          = var.password
-  bd_adress         = module.rds.bd_adress
-  efs_dns_name      = module.efs.efs_dns_name
+  ami                 = var.ami
+  key_name            = var.key_name
+  instance_type       = var.instance_type
+  subnet_public_a     = module.vpc.subnet_public_a_id
+  subnet_public_b     = module.vpc.subnet_public_b_id
+  security_group_id   = module.vpc.security_group_ec2_wordpress_id
+  dbname              = var.dbname
+  user                = var.user
+  password            = var.password
+  bd_adress           = module.rds.bd_adress
+  efs_dns_name        = module.efs.efs_dns_name
+  elasticache_address = module.elasticache.elasticache_adress
 
 }
 
@@ -105,4 +106,13 @@ module "efs" {
   subnet_public_id_a    = module.vpc.subnet_public_a_id
   subnet_public_id_b    = module.vpc.subnet_public_b_id
   security_group_efs_id = module.vpc.security_group_efs_id
+}
+
+module "elasticache" {
+  source = "./elasticache"
+
+  subnet_private_a         = module.vpc.subnet_private_a_id
+  subnet_private_b         = module.vpc.subnet_public_b_id
+  security_group_memcached = module.vpc.security_group_memcached_id
+
 }

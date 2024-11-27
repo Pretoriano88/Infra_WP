@@ -22,8 +22,9 @@ Este projeto apresenta uma infraestrutura para hospedar um site WordPress com al
 ## Requisitos Necessários
 - Conta AWS com permissões administrativas.
 - Terraform versão 1.1.7 ou superior.
+- Versão do provider 5.0 ou superior
 - AWS CLI configurado no ambiente local.
-- Sistema Linux para execução dos comandos.
+- Sistema Linux ou Windows para execução dos comandos.
 
 ## Como Configurar e Utilizar
 
@@ -35,7 +36,7 @@ $ cd Infra_WP/terraform
 ```
 
 ### Passo 2: Configurar as Variáveis
-Edite o arquivo `aws.tfvars` para incluir informações como região, credenciais e e-mail para notificações do CloudWatch.
+Edite o arquivo `terraforms.tfvars` para incluir informações como região, credenciais e e-mail para notificações do CloudWatch.
 
 ### Passo 3: Inicializar o Terraform
 Prepare o ambiente do Terraform:
@@ -47,13 +48,13 @@ $ terraform init
 ### Passo 4: Planejar a Infraestrutura
 Verifique os recursos que serão criados:
 ```bash
-$ terraform plan -var-file="aws.tfvars"
+$ terraform plan -var-file="terraforms.tfvars"
 ```
 
 ### Passo 5: Criar a Infraestrutura
 Aplique as configurações na AWS:
 ```bash
-$ terraform apply -var-file="aws.tfvars"
+$ terraform apply -var-file="terraforms.tfvars"
 ```
 Confirme a execução digitando `yes` quando solicitado.
 
@@ -74,17 +75,22 @@ Após o provisionamento, acesse o IP público da instância pelo navegador para 
    sudo pritunl default-password
    ```
 4. Configure o Pritunl:
-   - Acesse a interface web na porta `14253`.
+   - Acesse a interface web na porta `1194`.
    - Crie uma organização e adicione usuários.
    - Vincule a organização a um servidor e inicie-o.
 
 5. Baixe o arquivo de configuração do usuário e importe no cliente VPN Pritunl.
 
-## Observações Finais
-Para evitar custos desnecessários, desative recursos como **Elastic IP** ou **NAT Gateway** se não forem mais necessários. Por exemplo, para excluir o NAT Gateway:
+
+### Passo 7: Configurar as Variáveis
 ```bash
-$ aws ec2 delete-nat-gateway --nat-gateway-id <id_nat_gateway>
+$ terraform destroy "
 ```
+Confirme a execução digitando `yes` quando solicitado.
+
+
+## Observações Finais
+Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar  ```
 
 
 ---

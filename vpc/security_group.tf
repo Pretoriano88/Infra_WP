@@ -150,3 +150,29 @@ resource "aws_security_group" "efs_sg" {
     Name = "Efs-sg"
   }
 }
+
+resource "aws_security_group" "memcached_sg" {
+  name        = "memcached-security-group"
+  description = "Security group for Memcached"
+  vpc_id      = aws_vpc.this.id // Substitua pelo ID da sua VPC
+
+  // Regra de entrada para permitir tráfego na porta 11211
+  ingress {
+    from_port   = 11211
+    to_port     = 11211
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] // Altere para o CIDR apropriado para sua segurança
+  }
+
+  // Regra de saída para permitir todo o tráfego
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" // Permite todo o tráfego
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "Memcached Security Group"
+  }
+}
