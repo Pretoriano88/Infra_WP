@@ -91,9 +91,18 @@ Confirme a execução digitando `yes` quando solicitado.
 
 ## Observações Finais
 
+
+
 ![alt text](image.png)
 
 Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar 
+
+
+
+
+
+
+
 
 
 ---

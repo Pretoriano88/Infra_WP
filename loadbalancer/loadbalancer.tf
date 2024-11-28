@@ -10,10 +10,10 @@ resource "aws_lb" "wordpress_alb" {
   load_balancer_type = "application"
 
   # Grupos de segurança associados ao Load Balancer. Esse SG deve permitir tráfego HTTP (porta 80)
-  security_groups = [aws_security_group.sc-ec2-wordpress.id]
+  security_groups = [var.security_group_load_balancer_id]
 
   # Subnets em que o Load Balancer será criado, deve estar em subnets públicas para ser acessível
-  subnets = [aws_subnet.subnet-public-1a.id, aws_subnet.subnet-public-1b.id]
+  subnets = [var.subnet_public_a_id, var.subnet_cidr_public_b_id]
 }
 
 # Listener do Load Balancer que escuta na porta 80 (HTTP)
@@ -37,50 +37,6 @@ resource "aws_lb_listener" "this" {
   }
 }
 
-# Definição do Target Group, que agrupa as instâncias que irão receber tráfego do Load Balancer
-resource "aws_lb_target_group" "this" {
-  # Nome do Target Group
-  name = "learn-asg-terramino"
-
-  # Porta na qual o Target Group vai receber tráfego (HTTP na porta 80)
-  port = 80
-
-  # Protocolo usado para comunicação (HTTP)
-  protocol = "HTTP"
-
-  # VPC onde o Target Group será criado (deve corresponder à VPC das instâncias)
-  vpc_id = aws_vpc.mainvpc.id
-
-  # Configurações de health check para garantir que as instâncias estão funcionando
-  health_check {
-    # Caminho a ser verificado para o health check (raiz do servidor, "/")
-    path = "/"
-
-    # Porta usada pelo health check (mesma da aplicação, 80)
-    port = 80
-
-    # Protocolo usado para o health check
-    protocol = "HTTP"
-
-    # Número de verificações consecutivas necessárias para considerar a instância saudável
-    healthy_threshold = 3
-
-    # Número de verificações consecutivas antes de considerar a instância não saudável
-    unhealthy_threshold = 3
-
-    # Códigos HTTP considerados válidos para o health check (de 200 a 499)
-    matcher = "200-499"
-  }
-}
-
-# Associa o Auto Scaling Group (ASG) ao Target Group do Load Balancer
-resource "aws_autoscaling_attachment" "this" {
-  # Nome do Auto Scaling Group que será associado ao Target Group
-  autoscaling_group_name = aws_autoscaling_group.wordpress_asg.name
-
-  # ARN do Target Group para onde o tráfego será direcionado
-  lb_target_group_arn = aws_lb_target_group.this.arn
-}
 
 
 /*Explicação Geral:

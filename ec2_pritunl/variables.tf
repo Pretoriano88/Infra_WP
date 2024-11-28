@@ -25,5 +25,5 @@ variable "key_name" {
 
 }
 variable "enviroment" {
-  
+
 }

@@ -64,18 +64,18 @@ module "ec2_pritunl" {
 module "autoscaling_template" {
   source = "./autoscaling+template"
 
-  ami                 = var.ami
-  key_name            = var.key_name
-  instance_type       = var.instance_type
-  subnet_public_a     = module.vpc.subnet_public_a_id
-  subnet_public_b     = module.vpc.subnet_public_b_id
-  security_group_id   = module.vpc.security_group_ec2_wordpress_id
-  dbname              = var.dbname
-  user                = var.user
-  password            = var.password
-  bd_adress           = module.rds.bd_adress
-  efs_dns_name        = module.efs.efs_dns_name
-  elasticache_address = module.elasticache.elasticache_adress
+  ami               = var.ami
+  key_name          = var.key_name
+  instance_type     = var.instance_type
+  subnet_public_a   = module.vpc.subnet_public_a_id
+  subnet_public_b   = module.vpc.subnet_public_b_id
+  security_group_id = module.vpc.security_group_ec2_wordpress_id
+  dbname            = var.dbname
+  user              = var.user
+  password          = var.password
+  bd_adress         = module.rds.bd_adress
+  efs_dns_name      = module.efs.efs_dns_name
+  //elasticache_address = module.elasticache.elasticache_adress
 
 }
 
@@ -96,8 +96,8 @@ module "rds" {
   skip_final_snapshot  = var.skip_final_snapshot
   multi_az             = var.multi_az
   security_group_id    = module.vpc.security_group_rds_id
-  db_subnet_group      = module.vpc.subnet_group_name
-
+  subnet_public_a_id   = module.vpc.subnet_public_a_id
+  subnet_public_b_id   = module.vpc.subnet_public_b_id
 }
 
 module "efs" {
@@ -118,3 +118,13 @@ module "elasticache" {
 
 }
 */
+
+module "load_balancer" {
+  source = "./loadbalancer"
+   
+  vpc_id = module.vpc.vpc_id
+  subnet_public_a_id = module.vpc.subnet_public_a_id
+  subnet_cidr_public_b_id = module.vpc.subnet_public_b_id
+  security_group_load_balancer_id = module.vpc.security_group_load_balancer_id
+  autoscaling_group_name = module.autoscaling_template.autoscaling_group_name
+}

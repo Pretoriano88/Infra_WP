@@ -1,5 +1,8 @@
 
 // Output for ec2 docker
+output "vpc_id" {
+   value = aws_vpc.this.id
+}
 
 output "subnet_public_a_id" {
   value = aws_subnet.public_a.id
@@ -34,10 +37,6 @@ output "security_group_rds_id" {
   value = aws_security_group.allow_rds.id
 }
 
-output "subnet_group_name" {
-  value = aws_db_subnet_group.db_subnet_group.name
-}
-
 output "security_group_ec2_wordpress_id" {
   value = aws_security_group.ec2-wordpress.id
 }
@@ -49,4 +48,7 @@ output "security_group_efs_id" {
 
 output "security_group_memcached_id" {
   value = aws_security_group.memcached_sg.id
+}
+output "security_group_load_balancer_id" {
+  value = aws_security_group.load_balancer.id
 }

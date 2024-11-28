@@ -9,7 +9,7 @@ resource "aws_instance" "ec2_pritunl" {
   security_groups = [var.vpc_security_group_id]
   user_data       = file("${path.module}/../scripts/ec2_pritunl.sh")
 
- tags = {
+  tags = {
     Name = "Pritunl-${var.enviroment}"
   }
 }
