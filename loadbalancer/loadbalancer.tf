@@ -1,13 +1,13 @@
 # Recurso que define o Application Load Balancer (ALB)
 resource "aws_lb" "wordpress_alb" {
   # Nome do Load Balancer
-  name = "wordpress-load-balancer"
+  name = var.load_balancer_name
 
   # Indica se o Load Balancer é interno (somente acessível dentro da VPC) ou externo (acessível da Internet)
-  internal = false
+  internal = var.lb_internal_external
 
   # Tipo do Load Balancer, definido como "application" para Application Load Balancer
-  load_balancer_type = "application"
+  load_balancer_type = var.load_balancer_type
 
   # Grupos de segurança associados ao Load Balancer. Esse SG deve permitir tráfego HTTP (porta 80)
   security_groups = [var.security_group_load_balancer_id]
@@ -22,15 +22,15 @@ resource "aws_lb_listener" "this" {
   load_balancer_arn = aws_lb.wordpress_alb.arn
 
   # Porta na qual o listener vai escutar (HTTP usa a porta 80)
-  port = "80"
+  port = var.listener_port
 
   # Protocolo usado para o listener (neste caso, HTTP)
-  protocol = "HTTP"
+  protocol = var.listener_protocol
 
   # Ação padrão quando uma requisição é recebida: encaminhar (forward) para o Target Group
   default_action {
     # Tipo de ação que será tomada: forward, ou seja, encaminhar o tráfego
-    type = "forward"
+    type = var.default_action_type
 
     # O ARN do Target Group para o qual o tráfego será encaminhado
     target_group_arn = aws_lb_target_group.this.arn

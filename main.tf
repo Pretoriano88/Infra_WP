@@ -79,8 +79,6 @@ module "autoscaling_template" {
 
 }
 
-// RDS module 
-
 module "rds" {
   source = "./rds"
 
@@ -127,4 +125,20 @@ module "load_balancer" {
   subnet_cidr_public_b_id = module.vpc.subnet_public_b_id
   security_group_load_balancer_id = module.vpc.security_group_load_balancer_id
   autoscaling_group_name = module.autoscaling_template.autoscaling_group_name
+  load_balancer_name = var.load_balancer_name
+  lb_internal_external = var.lb_internal_external
+  load_balancer_type = var.load_balancer_type
+  listener_port = var.listener_port
+  listener_protocol = var.listener_protocol
+  default_action_type = var.default_action_type
+  target_group_name = var.target_group_name
+  target_group_port = var.target_group_port
+  target_group_protocol = var.target_group_protocol
+  health_check_path = var.health_check_path
+  health_check_port = var.health_check_port
+  health_check_protocol = var.health_check_protocol
+  healthy_threshold = var.healthy_threshold
+  unhealthy_threshold = var.unhealthy_threshold
+  health_check_matcher = var.health_check_matcher
+
 }
