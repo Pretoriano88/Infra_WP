@@ -35,3 +35,16 @@ parameter_group_name = "default.mysql8.0" // RDS parameter group name
 port                 = 3306               // Port used by the databases
 skip_final_snapshot  = true               // Skip final snapshot upon RDS deletion
 multi_az             = false              // Enable Multi-AZ deployment
+
+
+// CLoudwatch
+
+evaluation_periods           = 2
+period                       = 300
+statistic                    = "Average"
+cpu_alarm_threshold          = 80
+elasticache_memory_threshold = 10000000
+autoscaling_group_name       = "example-autoscaling-group"
+rds_instance_identifier      = "example-rds-instance"
+elasticache_cluster_id       = "example-elasticache-cluster"
+docker_instance_id           = "i-0abcd1234efgh5678"

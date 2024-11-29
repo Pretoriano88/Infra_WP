@@ -21,5 +21,9 @@ resource "aws_db_instance" "bdword" {
   lifecycle {
     ignore_changes = [password]
   }
+
+    tags = {
+    Name = "RDS_MySQL-${var.enviroment}"
+  }
 }
 

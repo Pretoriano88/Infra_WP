@@ -44,7 +44,7 @@ module "ec2_docker" {
   subnet_id             = module.vpc.subnet_private_b_id
   vpc_security_group_id = module.vpc.security_group_docker_id
   key_name              = var.key_name
-
+  enviroment            = var.enviroment
 
 }
 
@@ -62,7 +62,7 @@ module "ec2_pritunl" {
 }
 
 module "autoscaling_template" {
-  source = "./autoscaling+template"
+  source = "./autoscaling_template"
 
   ami               = var.ami
   key_name          = var.key_name
@@ -96,6 +96,7 @@ module "rds" {
   security_group_id    = module.vpc.security_group_rds_id
   subnet_public_a_id   = module.vpc.subnet_public_a_id
   subnet_public_b_id   = module.vpc.subnet_public_b_id
+  enviroment           = var.enviroment
 }
 
 module "efs" {
@@ -141,4 +142,20 @@ module "load_balancer" {
   unhealthy_threshold = var.unhealthy_threshold
   health_check_matcher = var.health_check_matcher
 
+}
+
+module "cloudwatch_monitoring" {
+  source = "./monitoring"
+
+  region                       = module.vpc.vpc_id
+  evaluation_periods           = var.evaluation_periods
+  period                       = var.period
+  statistic                    = var.statistic
+  cpu_alarm_threshold          = var.cpu_alarm_threshold
+  elasticache_memory_threshold = var.elasticache_memory_threshold
+  autoscaling_group_name       = module.autoscaling_template.autoscaling_group_name
+  rds_instance_identifier      = var.rds_instance_identifier
+  //elasticache_cluster_id       = var.elasticache_cluster_id
+  instance_id     = module.ec2_docker.instance_id
+  
 }

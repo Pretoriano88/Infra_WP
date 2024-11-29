@@ -53,3 +53,7 @@ variable "subnet_public_a_id" {
 variable "subnet_public_b_id" {
 
 }
+
+variable "enviroment" {
+  
+}

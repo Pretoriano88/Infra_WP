@@ -237,3 +237,48 @@ variable "health_check_matcher" {
   type        = string
   default     = "200-499"
 }
+
+//cloudwatch
+
+
+
+variable "evaluation_periods" {
+  description = "The number of periods over which data is evaluated to trigger an alarm."
+  default     = 2
+}
+
+variable "period" {
+  description = "The period (in seconds) over which the specified statistic is applied."
+  default     = 300
+}
+
+variable "statistic" {
+  description = "The statistic to apply to the alarm's associated metric."
+  default     = "Average"
+}
+
+variable "cpu_alarm_threshold" {
+  description = "The threshold for CPU utilization alarm."
+  default     = 80
+}
+
+variable "elasticache_memory_threshold" {
+  description = "The threshold for freeable memory in ElastiCache alarms."
+  default     = 10000000
+}
+
+variable "autoscaling_group_name" {
+  description = "The name of the Auto Scaling group."
+}
+
+variable "rds_instance_identifier" {
+  description = "The identifier of the RDS instance."
+}
+
+variable "elasticache_cluster_id" {
+  description = "The identifier of the ElastiCache cluster."
+}
+
+variable "docker_instance_id" {
+  description = "The ID of the EC2 instance running Docker."
+}

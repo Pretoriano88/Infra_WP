@@ -9,6 +9,9 @@ resource "aws_instance" "ec2_docker" {
   security_groups = [var.vpc_security_group_id]
   user_data       = file("${path.module}/../scripts/ec2_docker.sh")
 
+    tags = {
+    Name = "Pritunl-${var.enviroment}"
+  }
 
 
 
