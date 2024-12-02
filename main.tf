@@ -94,8 +94,8 @@ module "rds" {
   skip_final_snapshot  = var.skip_final_snapshot
   multi_az             = var.multi_az
   security_group_id    = module.vpc.security_group_rds_id
-  subnet_public_a_id   = module.vpc.subnet_public_a_id
-  subnet_public_b_id   = module.vpc.subnet_public_b_id
+  subnet_private_a_id   = module.vpc.subnet_private_a_id
+  subnet_private_b_id   = module.vpc.subnet_private_b_id
   enviroment           = var.enviroment
 }
 

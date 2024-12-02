@@ -47,10 +47,10 @@ variable "security_group_id" {
   type = string
 }
 
-variable "subnet_public_a_id" {
+variable "subnet_private_a_id" {
 
 }
-variable "subnet_public_b_id" {
+variable "subnet_private_b_id" {
 
 }
 
