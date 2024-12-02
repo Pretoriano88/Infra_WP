@@ -23,21 +23,18 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 # Torna o Docker Compose executável
 sudo chmod +x /usr/local/bin/docker-compose
 
-
-
-
-
-# Download e extração dos arquivos
+# Download
 cd /tmp
 
-sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/main/scripts/docker-compose.yml
+sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/main/scripts/docker_scripts/docker-compose.yml
 
 
-#Move o arquivo index.html para o volume mapeado do Docker
-sudo mkdir -p /tmp/docker/html
-
-sudo mv /tmp/docker/index.html /tmp/docker/html/
+# Arquivo index.html para o volume mapeado do Docker
+sudo mkdir -p /tmp/docker
+cd /tmp/docker
+sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/main/scripts/docker_scripts/index.html
 
 
 # Inicializa os contêineres do Docker com Docker Compose
+cd /tmp
 sudo docker-compose up -d
