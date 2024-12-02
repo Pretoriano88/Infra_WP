@@ -103,11 +103,11 @@ Confirme a execução digitando `yes` quando solicitado.
 
 ## Observações Finais
 
-
+## Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar
 
 ![alt text](image.png)
 
-Para evitar custos desnecessários, comente o código do modulo **elasticache** ou o modulo que não irá usar 
+ 
 
 
 
@@ -116,7 +116,7 @@ Para evitar custos desnecessários, comente o código do modulo **elasticache** 
 
 
 
-
+##
 ---
 ![image](https://github.com/user-attachments/assets/e29f3645-c815-488f-bfee-01df9dc463e5)
 
