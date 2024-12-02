@@ -25,17 +25,17 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 
 
-# Instala o unzip para descompactar arquivos
-sudo apt install -y unzip
+
 
 # Download e extração dos arquivos
 cd /tmp
-sudo wget https://github.com/OpsXandao/docker/raw/refs/heads/main/docker.zip
-sudo unzip docker.zip -d /tmp
-cd /tmp/docker/
+
+sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/main/scripts/docker-compose.yml
+
 
 #Move o arquivo index.html para o volume mapeado do Docker
 sudo mkdir -p /tmp/docker/html
+
 sudo mv /tmp/docker/index.html /tmp/docker/html/
 
 
