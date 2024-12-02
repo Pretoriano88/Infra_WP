@@ -30,8 +30,8 @@ sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/mai
 
 
 # Arquivo index.html para o volume mapeado do Docker
-sudo mkdir -p /tmp/docker
-cd /tmp/docker
+sudo mkdir html
+cd /tmp/html
 sudo wget https://raw.githubusercontent.com/Pretoriano88/Infra_WP/refs/heads/main/scripts/docker_scripts/index.html
 
 

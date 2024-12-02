@@ -5,6 +5,9 @@ resource "aws_route_table" "this" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.gw.id
   }
+    tags = {
+    Name = "Public_Route_Table-${var.enviroment}"
+  }
 
 }
 
@@ -16,5 +19,8 @@ resource "aws_route_table" "private_route_table" {
   route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat_gateway.id # Rota padrão para o NAT Gateway
+  }
+    tags = {
+    Name = "Private_Route_Table-${var.enviroment}"
   }
 }

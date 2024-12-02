@@ -6,7 +6,6 @@ resource "aws_nat_gateway" "nat_gateway" {
     deve estar em uma subnet que tem acesso à internet.
 */
   tags = {
-    Name = "Nat-Gateway"
+    Name = "Nat_Gateway-${var.enviroment}"
   }
-
 }
