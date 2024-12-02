@@ -23,9 +23,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 # Torna o Docker Compose executável
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Verifica se o Docker e Docker Compose foram instalados corretamente
-sudo docker --version
-sudo docker-compose --version
+
 
 # Instala o unzip para descompactar arquivos
 sudo apt install -y unzip

@@ -37,6 +37,18 @@ $ cd Infra_WP/terraform
 
 ### Passo 2: Configurar as Variáveis
 Edite o arquivo `terraforms.tfvars` para incluir informações como região, credenciais e e-mail para notificações do CloudWatch.
+I-Para poder acessar via SSH e acessar a pagina de configuração do pritunl, adicione o seu ip público atual (acesse https://nordvpn.com/pt-br/what-is-my-ip/ e copie o ip que está no campo  "Qual é meu IP? ") na variavel myip dentro do arquivo tfvars
+
+II- Altere a variavel enviroment, conforme seu ambiente (Impactará nas tags, Ex: ec2_docker-<enviroment> ) 
+
+III- Crie uma chave para poder conectar-se nas instancias(Ec2 wordpress, Ec2 docker, Ec2 Pritunl)
+create key pair linux
+ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+
+windows(PowerShell)
+ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+
+IV- Configure o caminho para o local onde salvou a chave publica gerada acima . Dentro do terraform.tfvars, altere a variavel public_key para o caminho da chave publica 
 
 ### Passo 3: Inicializar o Terraform
 Prepare o ambiente do Terraform:
@@ -48,13 +60,13 @@ $ terraform init
 ### Passo 4: Planejar a Infraestrutura
 Verifique os recursos que serão criados:
 ```bash
-$ terraform plan -var-file="terraforms.tfvars"
+$ terraform plan -var-file="terraform.tfvars"
 ```
 
 ### Passo 5: Criar a Infraestrutura
 Aplique as configurações na AWS:
 ```bash
-$ terraform apply -var-file="terraforms.tfvars"
+$ terraform apply -var-file="terraform.tfvars"
 ```
 Confirme a execução digitando `yes` quando solicitado.
 

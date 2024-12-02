@@ -8,7 +8,7 @@ resource "aws_security_group" "ec2-wordpress" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.myip}/32"]
   }
 
   ingress {
@@ -28,8 +28,8 @@ resource "aws_security_group" "ec2-wordpress" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = {
-    Name = "Wordpress-sg"
+   tags = {
+    Name = "wordpress_template_SG-${var.enviroment}"
   }
 }
 
@@ -56,8 +56,8 @@ resource "aws_security_group" "load_balancer" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = {
-    Name = "Load balancer"
+   tags = {
+    Name = "Load_balancer_SG-${var.enviroment}"
   }
 }
 
@@ -70,7 +70,15 @@ resource "aws_security_group" "ec2_docker" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.this.cidr_block]
+  }
+  
+  ingress {
+    description      = "PVT_Instance"
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.this.cidr_block]
   }
 
   egress {
@@ -78,6 +86,9 @@ resource "aws_security_group" "ec2_docker" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+    tags = {
+    Name = "ec2_docker_SG-${var.enviroment}"
   }
 }
 
@@ -86,15 +97,13 @@ resource "aws_security_group" "pritunl_sg" {
   description = "Security group for Pritunl VPN Server"
   vpc_id      = aws_vpc.this.id
 
-  # Porta de gerenciamento do Pritunl (default: 443 para gerenciamento via web)
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.myip}/32"]
   }
 
-  # Porta de VPN Pritunl
   ingress {
     from_port   = 1194
     to_port     = 1194
@@ -102,7 +111,6 @@ resource "aws_security_group" "pritunl_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # SSH para administração
   ingress {
     from_port   = 22
     to_port     = 22
@@ -111,7 +119,6 @@ resource "aws_security_group" "pritunl_sg" {
 
   }
 
-  # Regras de saída
   egress {
     from_port   = 0
     to_port     = 0
@@ -119,12 +126,11 @@ resource "aws_security_group" "pritunl_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "Pritunl sg"
+   tags = {
+    Name = "Pritunl_SG-${var.enviroment}"
   }
 }
 
-# Security group RDS
 resource "aws_security_group" "allow_rds" {
   name        = "allow_rds"
   description = "Allow MySQL traffic from EC2 instances"
@@ -148,8 +154,8 @@ resource "aws_security_group" "allow_rds" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "Rds-sg"
+   tags = {
+    Name = "Rds_SG-${var.enviroment}"
   }
 }
 
@@ -171,26 +177,25 @@ resource "aws_security_group" "efs_sg" {
   egress {
     from_port        = 0
     to_port          = 0
-    protocol         = "-1" // Permitir todo o tráfego de saída
+    protocol         = "-1" 
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
   tags = {
-    Name = "Efs-sg"
+    Name = "Efs_SG-${var.enviroment}"
   }
 }
 
 resource "aws_security_group" "memcached_sg" {
   name        = "memcached-security-group"
   description = "Security group for Memcached"
-  vpc_id      = aws_vpc.this.id // Substitua pelo ID da sua VPC
+  vpc_id      = aws_vpc.this.id 
 
-  // Regra de entrada para permitir tráfego na porta 11211
   ingress {
     from_port   = 11211
     to_port     = 11211
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] // Altere para o CIDR apropriado para sua segurança
+    cidr_blocks = [aws_subnet.private_a.cidr_block, aws_subnet.private_b.cidr_block] 
   }
 
   // Regra de saída para permitir todo o tráfego
@@ -201,7 +206,7 @@ resource "aws_security_group" "memcached_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "Memcached Security Group"
+   tags = {
+    Name = "Memcached_SG-${var.enviroment}"
   }
 }

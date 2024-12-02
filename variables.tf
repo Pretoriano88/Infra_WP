@@ -1,3 +1,16 @@
+
+variable "myip" {
+  description = "ip public for acess ssh"
+  type = string
+}
+
+variable "enviroment" {
+  description = "tags enviroment"
+  type        = string
+
+
+}
+
 // VPC variables
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"
@@ -81,12 +94,7 @@ variable "instance_type" {
 }
 
 
-variable "enviroment" {
-  description = "tags enviroment"
-  type        = string
 
-
-}
 
 // RDS variables 
 
@@ -149,37 +157,37 @@ variable "multi_az" {
 variable "load_balancer_name" {
   description = "The name of the Load Balancer"
   type        = string
-  default     = "wordpress-load-balancer"
+ 
 }
 
 variable "lb_internal_external" {
   description = "Indicates if the Load Balancer is internal (accessible only within the VPC) or external (accessible from the Internet)"
   type        = bool
-  default     = false
+  
 }
 
 variable "load_balancer_type" {
   description = "Type of the Load Balancer, defined as 'application' for Application Load Balancer"
   type        = string
-  default     = "application"
+ 
 }
 
 variable "listener_port" {
   description = "The port on which the listener will listen (HTTP uses port 80)"
   type        = string
-  default     = "80"
+  
 }
 
 variable "listener_protocol" {
   description = "Protocol used for the listener (in this case, HTTP)"
   type        = string
-  default     = "HTTP"
+ 
 }
 
 variable "default_action_type" {
   description = "Default action when a request is received: forward to the Target Group"
   type        = string
-  default     = "forward"
+  
 }
 
 # Variables for Target Group configuration
@@ -187,98 +195,101 @@ variable "default_action_type" {
 variable "target_group_name" {
   description = "The name of the Target Group"
   type        = string
-  default     = "learn-asg-terramino"
+ 
 }
 
 variable "target_group_port" {
   description = "The port on which the Target Group will receive traffic (HTTP on port 80)"
   type        = number
-  default     = 80
+ 
 }
 
 variable "target_group_protocol" {
   description = "Protocol used for communication (HTTP)"
   type        = string
-  default     = "HTTP"
+
 }
 
 variable "health_check_path" {
   description = "Path to be checked for health check (root of the server, '/')"
   type        = string
-  default     = "/"
+ 
 }
 
 variable "health_check_port" {
   description = "Port used by the health check (same as the application, 80)"
   type        = number
-  default     = 80
+ 
 }
 
 variable "health_check_protocol" {
   description = "Protocol used for the health check"
   type        = string
-  default     = "HTTP"
+ 
 }
 
 variable "healthy_threshold" {
   description = "Number of consecutive checks required to consider the instance healthy"
   type        = number
-  default     = 3
+ 
 }
 
 variable "unhealthy_threshold" {
   description = "Number of consecutive checks before considering the instance unhealthy"
   type        = number
-  default     = 3
+ 
 }
 
 variable "health_check_matcher" {
   description = "HTTP codes considered valid for the health check (from 200 to 499)"
   type        = string
-  default     = "200-499"
+
 }
 
 //cloudwatch
 
 
-
 variable "evaluation_periods" {
   description = "The number of periods over which data is evaluated to trigger an alarm."
-  default     = 2
+  type        = number
 }
 
 variable "period" {
   description = "The period (in seconds) over which the specified statistic is applied."
-  default     = 300
+  type        = number
 }
 
 variable "statistic" {
   description = "The statistic to apply to the alarm's associated metric."
-  default     = "Average"
+  type        = string
 }
 
 variable "cpu_alarm_threshold" {
   description = "The threshold for CPU utilization alarm."
-  default     = 80
+  type        = number
 }
 
 variable "elasticache_memory_threshold" {
   description = "The threshold for freeable memory in ElastiCache alarms."
-  default     = 10000000
+  type        = number
 }
 
 variable "autoscaling_group_name" {
   description = "The name of the Auto Scaling group."
+  type        = string
 }
 
 variable "rds_instance_identifier" {
   description = "The identifier of the RDS instance."
+  type        = string
 }
 
 variable "elasticache_cluster_id" {
   description = "The identifier of the ElastiCache cluster."
+  type        = string
 }
 
 variable "docker_instance_id" {
   description = "The ID of the EC2 instance running Docker."
+  type        = string
 }

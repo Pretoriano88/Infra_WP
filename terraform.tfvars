@@ -1,4 +1,9 @@
 
+myip = "179.34.78.107"
+enviroment    = "infra-aws"
+
+
+
 // VPC Configuration
 vpc_cidr = "10.0.0.0/16"
 vpc_tags = "vpc"
@@ -19,7 +24,7 @@ key_name      = "my-key-pair"
 public_key    = "C:/Users/Praetorian/Desktop/Infra aws - Copia/ch/my-key-pair.pub"
 ami           = "ami-07d9b9ddc6cd8dd30"
 instance_type = "t3.micro"
-enviroment    = "infra-aws"
+
 
 
 // RDS Variables
@@ -34,8 +39,26 @@ password             = "elfos123"         // Database password
 parameter_group_name = "default.mysql8.0" // RDS parameter group name
 port                 = 3306               // Port used by the databases
 skip_final_snapshot  = true               // Skip final snapshot upon RDS deletion
-multi_az             = false              // Enable Multi-AZ deployment
+multi_az             = true              // Enable Multi-AZ deployment
 
+// loadBalancer variables
+load_balancer_name = "wordpress-load-balancer"
+lb_internal_external = false
+load_balancer_type = "application"
+listener_port = "80"
+listener_protocol = "HTTP"
+default_action_type = "forward"
+
+// Variables for Target Group configuration
+target_group_name = "learn-asg-terramino"
+target_group_port = 80
+target_group_protocol = "HTTP"
+health_check_path = "/"
+health_check_port = 80
+health_check_protocol = "HTTP"
+healthy_threshold = 3
+unhealthy_threshold = 3
+health_check_matcher = "200-499"
 
 // CLoudwatch
 

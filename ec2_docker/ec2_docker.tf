@@ -10,7 +10,7 @@ resource "aws_instance" "ec2_docker" {
   user_data       = file("${path.module}/../scripts/ec2_docker.sh")
 
     tags = {
-    Name = "Pritunl-${var.enviroment}"
+    Name = "Docker-${var.enviroment}"
   }
 
 

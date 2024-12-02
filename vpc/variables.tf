@@ -1,3 +1,9 @@
+
+variable "myip" {
+  description = "ip for ssh acess"
+  type = string
+}
+
 // VPC variables
 variable "cidr_block" {
   description = "The CIDR block for the VPC"

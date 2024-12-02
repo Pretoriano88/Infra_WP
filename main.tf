@@ -5,7 +5,7 @@
 module "vpc" {
   source = "./vpc"
 
-
+  myip = var.myip
   # VPC CIDR
   cidr_block = var.vpc_cidr
 
