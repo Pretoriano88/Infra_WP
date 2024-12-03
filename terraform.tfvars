@@ -71,3 +71,9 @@ autoscaling_group_name       = "example-autoscaling-group"
 rds_instance_identifier      = "example-rds-instance"
 elasticache_cluster_id       = "example-elasticache-cluster"
 docker_instance_id           = "i-0abcd1234efgh5678"
+
+// autoscaling_group
+desired_capacity = 2
+max_size = 4
+min_size = 2
+version_template = "$Latest"

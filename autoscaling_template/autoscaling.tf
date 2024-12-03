@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
   launch_template {
     id = aws_launch_template.wordpress_lt.id
 
-    version = var.desired_capacity
+    version = var.version_template
   }
 }
 

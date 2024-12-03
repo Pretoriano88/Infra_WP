@@ -76,7 +76,6 @@ module "autoscaling_template" {
   bd_adress         = module.rds.bd_adress
   efs_dns_name      = module.efs.efs_dns_name
   //elasticache_address = module.elasticache.elasticache_adress
-
   desired_capacity = var.desired_capacity
   max_size = var.max_size
   min_size = var.min_size
