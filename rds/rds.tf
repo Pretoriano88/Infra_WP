@@ -22,7 +22,7 @@ resource "aws_db_instance" "bdword" {
     ignore_changes = [password]
   }
 
-    tags = {
+  tags = {
     Name = "RDS_MySQL-${var.enviroment}"
   }
 }

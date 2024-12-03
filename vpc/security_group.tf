@@ -28,7 +28,7 @@ resource "aws_security_group" "ec2-wordpress" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-   tags = {
+  tags = {
     Name = "wordpress_template_SG-${var.enviroment}"
   }
 }
@@ -56,15 +56,15 @@ resource "aws_security_group" "load_balancer" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-   tags = {
+  tags = {
     Name = "Load_balancer_SG-${var.enviroment}"
   }
 }
 
 
 resource "aws_security_group" "ec2_docker" {
-  name = "ec2_docker"
-  vpc_id      = aws_vpc.this.id
+  name   = "ec2_docker"
+  vpc_id = aws_vpc.this.id
 
   ingress {
     from_port   = 22
@@ -72,13 +72,13 @@ resource "aws_security_group" "ec2_docker" {
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.this.cidr_block]
   }
-  
+
   ingress {
-    description      = "PVT_Instance"
-    from_port        = 8080
-    to_port          = 8080
-    protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.this.cidr_block]
+    description = "PVT_Instance"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.this.cidr_block]
   }
 
   egress {
@@ -87,7 +87,7 @@ resource "aws_security_group" "ec2_docker" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-    tags = {
+  tags = {
     Name = "ec2_docker_SG-${var.enviroment}"
   }
 }
@@ -126,7 +126,7 @@ resource "aws_security_group" "pritunl_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-   tags = {
+  tags = {
     Name = "Pritunl_SG-${var.enviroment}"
   }
 }
@@ -154,7 +154,7 @@ resource "aws_security_group" "allow_rds" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-   tags = {
+  tags = {
     Name = "Rds_SG-${var.enviroment}"
   }
 }
@@ -177,7 +177,7 @@ resource "aws_security_group" "efs_sg" {
   egress {
     from_port        = 0
     to_port          = 0
-    protocol         = "-1" 
+    protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
@@ -189,13 +189,13 @@ resource "aws_security_group" "efs_sg" {
 resource "aws_security_group" "memcached_sg" {
   name        = "memcached-security-group"
   description = "Security group for Memcached"
-  vpc_id      = aws_vpc.this.id 
+  vpc_id      = aws_vpc.this.id
 
   ingress {
     from_port   = 11211
     to_port     = 11211
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.private_a.cidr_block, aws_subnet.private_b.cidr_block] 
+    cidr_blocks = [aws_subnet.private_a.cidr_block, aws_subnet.private_b.cidr_block]
   }
 
   // Regra de saída para permitir todo o tráfego
@@ -206,7 +206,7 @@ resource "aws_security_group" "memcached_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-   tags = {
+  tags = {
     Name = "Memcached_SG-${var.enviroment}"
   }
 }

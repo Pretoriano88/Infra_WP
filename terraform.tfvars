@@ -1,6 +1,6 @@
 
-myip = "179.34.78.107"
-enviroment    = "infra-aws"
+myip       = "179.34.78.107"
+enviroment = "infra-aws"
 
 
 
@@ -39,26 +39,26 @@ password             = "elfos123"         // Database password
 parameter_group_name = "default.mysql8.0" // RDS parameter group name
 port                 = 3306               // Port used by the databases
 skip_final_snapshot  = true               // Skip final snapshot upon RDS deletion
-multi_az             = true              // Enable Multi-AZ deployment
+multi_az             = true               // Enable Multi-AZ deployment
 
 // loadBalancer variables
-load_balancer_name = "wordpress-load-balancer"
+load_balancer_name   = "wordpress-load-balancer"
 lb_internal_external = false
-load_balancer_type = "application"
-listener_port = "80"
-listener_protocol = "HTTP"
-default_action_type = "forward"
+load_balancer_type   = "application"
+listener_port        = "80"
+listener_protocol    = "HTTP"
+default_action_type  = "forward"
 
 // Variables for Target Group configuration
-target_group_name = "learn-asg-terramino"
-target_group_port = 80
+target_group_name     = "learn-asg-terramino"
+target_group_port     = 80
 target_group_protocol = "HTTP"
-health_check_path = "/"
-health_check_port = 80
+health_check_path     = "/"
+health_check_port     = 80
 health_check_protocol = "HTTP"
-healthy_threshold = 3
-unhealthy_threshold = 3
-health_check_matcher = "200-499"
+healthy_threshold     = 3
+unhealthy_threshold   = 3
+health_check_matcher  = "200-499"
 
 // CLoudwatch
 

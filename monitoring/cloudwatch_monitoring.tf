@@ -14,8 +14,8 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   }
 
   actions_enabled = true
-  alarm_actions    = [aws_autoscaling_policy.scale_out_policy.arn]
-  ok_actions       = [aws_autoscaling_policy.scale_in_policy.arn]
+  alarm_actions   = [aws_autoscaling_policy.scale_out_policy.arn]
+  ok_actions      = [aws_autoscaling_policy.scale_in_policy.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "rds_cpu_utilization_alarm" {
@@ -34,7 +34,7 @@ resource "aws_cloudwatch_metric_alarm" "rds_cpu_utilization_alarm" {
   }
 
   actions_enabled = true
-  alarm_actions    = [] # Optional: Configure additional notifications or actions
+  alarm_actions   = [] # Optional: Configure additional notifications or actions
 }
 /*
 resource "aws_cloudwatch_metric_alarm" "memcached_memory_utilization_alarm" {
@@ -72,7 +72,7 @@ resource "aws_cloudwatch_metric_alarm" "docker_ec2_instance_alarm" {
   }
 
   actions_enabled = true
-  alarm_actions    = [] # Notification for unavailability
+  alarm_actions   = [] # Notification for unavailability
 }
 
 resource "aws_autoscaling_policy" "scale_out_policy" {

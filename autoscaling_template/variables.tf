@@ -54,3 +54,21 @@ variable "efs_dns_name" {
 /*variable "elasticache_address" {
 
 }*/
+
+// autoscaling_group
+
+variable "desired_capacity" {
+  
+}
+
+variable "max_size" {
+  
+}
+
+variable "min_size" {
+  
+}
+
+variable "version_template" {
+  
+}

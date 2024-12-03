@@ -1,7 +1,7 @@
 resource "aws_eip" "nat_eip" {
   domain = "vpc"
 
-    tags = {
+  tags = {
     Name = "ElasticIP-${var.enviroment}"
   }
 }

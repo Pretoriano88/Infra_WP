@@ -4,29 +4,29 @@ variable "vpc_id" {
 }
 
 variable "security_group_load_balancer_id" {
-  
+
 }
 variable "subnet_public_a_id" {
-  
+
 }
 variable "subnet_cidr_public_b_id" {
-  
+
 }
 
 variable "autoscaling_group_name" {
-  
+
 }
 
 variable "load_balancer_name" {
   description = "The name of the Load Balancer"
   type        = string
- 
+
 }
 
 variable "lb_internal_external" {
   description = "Indicates if the Load Balancer is internal (accessible only within the VPC) or external (accessible from the Internet)"
   type        = bool
-  
+
 }
 
 variable "load_balancer_type" {
@@ -38,7 +38,7 @@ variable "load_balancer_type" {
 variable "listener_port" {
   description = "The port on which the listener will listen (HTTP uses port 80)"
   type        = string
- 
+
 }
 
 variable "listener_protocol" {
@@ -78,19 +78,19 @@ variable "target_group_protocol" {
 variable "health_check_path" {
   description = "Path to be checked for health check (root of the server, '/')"
   type        = string
-  
+
 }
 
 variable "health_check_port" {
   description = "Port used by the health check (same as the application, 80)"
   type        = number
-  
+
 }
 
 variable "health_check_protocol" {
   description = "Protocol used for the health check"
   type        = string
- 
+
 }
 
 variable "healthy_threshold" {

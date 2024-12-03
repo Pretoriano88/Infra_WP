@@ -1,7 +1,7 @@
 
 variable "myip" {
   description = "ip public for acess ssh"
-  type = string
+  type        = string
 }
 
 variable "enviroment" {
@@ -157,37 +157,37 @@ variable "multi_az" {
 variable "load_balancer_name" {
   description = "The name of the Load Balancer"
   type        = string
- 
+
 }
 
 variable "lb_internal_external" {
   description = "Indicates if the Load Balancer is internal (accessible only within the VPC) or external (accessible from the Internet)"
   type        = bool
-  
+
 }
 
 variable "load_balancer_type" {
   description = "Type of the Load Balancer, defined as 'application' for Application Load Balancer"
   type        = string
- 
+
 }
 
 variable "listener_port" {
   description = "The port on which the listener will listen (HTTP uses port 80)"
   type        = string
-  
+
 }
 
 variable "listener_protocol" {
   description = "Protocol used for the listener (in this case, HTTP)"
   type        = string
- 
+
 }
 
 variable "default_action_type" {
   description = "Default action when a request is received: forward to the Target Group"
   type        = string
-  
+
 }
 
 # Variables for Target Group configuration
@@ -195,13 +195,13 @@ variable "default_action_type" {
 variable "target_group_name" {
   description = "The name of the Target Group"
   type        = string
- 
+
 }
 
 variable "target_group_port" {
   description = "The port on which the Target Group will receive traffic (HTTP on port 80)"
   type        = number
- 
+
 }
 
 variable "target_group_protocol" {
@@ -213,31 +213,31 @@ variable "target_group_protocol" {
 variable "health_check_path" {
   description = "Path to be checked for health check (root of the server, '/')"
   type        = string
- 
+
 }
 
 variable "health_check_port" {
   description = "Port used by the health check (same as the application, 80)"
   type        = number
- 
+
 }
 
 variable "health_check_protocol" {
   description = "Protocol used for the health check"
   type        = string
- 
+
 }
 
 variable "healthy_threshold" {
   description = "Number of consecutive checks required to consider the instance healthy"
   type        = number
- 
+
 }
 
 variable "unhealthy_threshold" {
   description = "Number of consecutive checks before considering the instance unhealthy"
   type        = number
- 
+
 }
 
 variable "health_check_matcher" {
@@ -291,5 +291,27 @@ variable "elasticache_cluster_id" {
 
 variable "docker_instance_id" {
   description = "The ID of the EC2 instance running Docker."
+  type        = string
+}
+
+// autoscaling_group
+
+variable "desired_capacity" {
+  description = "The desired number of instances in the Auto Scaling group."
+  type        = number
+}
+
+variable "max_size" {
+  description = "The maximum number of instances allowed in the Auto Scaling group."
+  type        = number
+}
+
+variable "min_size" {
+  description = "The minimum number of instances that must be running in the Auto Scaling group."
+  type        = number
+}
+
+variable "version_template" {
+  description = "The version of the launch template to use for the Auto Scaling group."
   type        = string
 }

@@ -77,6 +77,11 @@ module "autoscaling_template" {
   efs_dns_name      = module.efs.efs_dns_name
   //elasticache_address = module.elasticache.elasticache_adress
 
+  desired_capacity = var.desired_capacity
+  max_size = var.max_size
+  min_size = var.min_size
+  version_template = var.version_template
+
 }
 
 module "rds" {
@@ -94,8 +99,8 @@ module "rds" {
   skip_final_snapshot  = var.skip_final_snapshot
   multi_az             = var.multi_az
   security_group_id    = module.vpc.security_group_rds_id
-  subnet_private_a_id   = module.vpc.subnet_private_a_id
-  subnet_private_b_id   = module.vpc.subnet_private_b_id
+  subnet_private_a_id  = module.vpc.subnet_private_a_id
+  subnet_private_b_id  = module.vpc.subnet_private_b_id
   enviroment           = var.enviroment
 }
 
@@ -120,27 +125,27 @@ module "elasticache" {
 
 module "load_balancer" {
   source = "./loadbalancer"
-   
-  vpc_id = module.vpc.vpc_id
-  subnet_public_a_id = module.vpc.subnet_public_a_id
-  subnet_cidr_public_b_id = module.vpc.subnet_public_b_id
+
+  vpc_id                          = module.vpc.vpc_id
+  subnet_public_a_id              = module.vpc.subnet_public_a_id
+  subnet_cidr_public_b_id         = module.vpc.subnet_public_b_id
   security_group_load_balancer_id = module.vpc.security_group_load_balancer_id
-  autoscaling_group_name = module.autoscaling_template.autoscaling_group_name
-  load_balancer_name = var.load_balancer_name
-  lb_internal_external = var.lb_internal_external
-  load_balancer_type = var.load_balancer_type
-  listener_port = var.listener_port
-  listener_protocol = var.listener_protocol
-  default_action_type = var.default_action_type
-  target_group_name = var.target_group_name
-  target_group_port = var.target_group_port
-  target_group_protocol = var.target_group_protocol
-  health_check_path = var.health_check_path
-  health_check_port = var.health_check_port
-  health_check_protocol = var.health_check_protocol
-  healthy_threshold = var.healthy_threshold
-  unhealthy_threshold = var.unhealthy_threshold
-  health_check_matcher = var.health_check_matcher
+  autoscaling_group_name          = module.autoscaling_template.autoscaling_group_name
+  load_balancer_name              = var.load_balancer_name
+  lb_internal_external            = var.lb_internal_external
+  load_balancer_type              = var.load_balancer_type
+  listener_port                   = var.listener_port
+  listener_protocol               = var.listener_protocol
+  default_action_type             = var.default_action_type
+  target_group_name               = var.target_group_name
+  target_group_port               = var.target_group_port
+  target_group_protocol           = var.target_group_protocol
+  health_check_path               = var.health_check_path
+  health_check_port               = var.health_check_port
+  health_check_protocol           = var.health_check_protocol
+  healthy_threshold               = var.healthy_threshold
+  unhealthy_threshold             = var.unhealthy_threshold
+  health_check_matcher            = var.health_check_matcher
 
 }
 
@@ -156,6 +161,6 @@ module "cloudwatch_monitoring" {
   autoscaling_group_name       = module.autoscaling_template.autoscaling_group_name
   rds_instance_identifier      = var.rds_instance_identifier
   //elasticache_cluster_id       = var.elasticache_cluster_id
-  instance_id     = module.ec2_docker.instance_id
-  
+  instance_id = module.ec2_docker.instance_id
+
 }

@@ -1,7 +1,7 @@
 
 variable "myip" {
   description = "ip for ssh acess"
-  type = string
+  type        = string
 }
 
 // VPC variables
