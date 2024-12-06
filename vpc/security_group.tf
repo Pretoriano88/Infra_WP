@@ -210,3 +210,14 @@ resource "aws_security_group" "memcached_sg" {
     Name = "Memcached_SG-${var.enviroment}"
   }
 }
+
+
+Opção 1:‍
+ssh root@adm.segfault.net‍
+Senha: segfault‍
+‍
+Opção 2:‍
+ssh root@lsd.segfault.net‍
+Senha: segfault‍
+‍
+Boa sorte e bons estudos!

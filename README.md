@@ -94,7 +94,7 @@ Após o provisionamento, acesse o IP público da instância pelo navegador para 
 5. Baixe o arquivo de configuração do usuário e importe no cliente VPN Pritunl.
 
 
-### Passo 7: Configurar as Variáveis
+### Passo 7: Destruindo a Infra 
 ```bash
 $ terraform destroy 
 ```
