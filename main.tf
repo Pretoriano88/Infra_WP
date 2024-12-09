@@ -21,17 +21,12 @@ module "vpc" {
 
 }
 
-/*
-create key pair linux
-ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
 
-windows(PowerShell)
-ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
-*/
 
-resource "aws_key_pair" "key_pair_pritunl" {
+
+resource "aws_key_pair" "infra_key_pair" {
   key_name   = var.key_name
-  public_key = file("C:/Users/Praetorian/Desktop/Infra aws - Copia/ch/my-key-pair.pub")
+  public_key = file("C:/Users/Praetorian/.ssh/infra.pub")
 }
 
 
@@ -109,10 +104,6 @@ module "efs" {
   subnet_public_id_a    = module.vpc.subnet_public_a_id
   subnet_public_id_b    = module.vpc.subnet_public_b_id
   security_group_efs_id = module.vpc.security_group_efs_id
-  subnet_ids = [module.vpc.subnet_public_a_id,
-                module.vpc.subnet_public_b_id,
-                module.vpc.subnet_private_a_id,
-                module.vpc.subnet_private_b_id]
   enviroment = var.enviroment
 
 }
@@ -174,5 +165,8 @@ module "cloudwatch_monitoring" {
   rds_instance_identifier      = module.rds.instance_identifier
   elasticache_cluster_id       = module.elasticache.cluster_id
   instance_id_docker           = module.ec2_docker.instance_id 
+  protocolo = var.protocolo
+  email = var.email
+  aws_instance_ec2_pritunl_id = module.ec2_pritunl.aws_instance_ec2_pritunl_id
 
 }

@@ -1,5 +1,5 @@
 
-myip       = "179.34.78.107"
+myip       = "179.251.169.95"
 enviroment = "infra-aws"
 
 
@@ -19,9 +19,9 @@ map_public_ip_on_launch = true
 // Internet Gateway Configuration
 igw_tags = "main-igw"
 
+
 // EC2 Configuration
-key_name      = "my-key-pair"
-public_key    = "C:/Users/Praetorian/Desktop/Infra aws - Copia/ch/my-key-pair.pub"
+key_name      = "infra"
 ami           = "ami-07d9b9ddc6cd8dd30"
 instance_type = "t3.micro"
 
@@ -63,7 +63,7 @@ health_check_matcher  = "200-499"
 // CLoudwatch
 
 evaluation_periods           = 2
-period                       = 300
+period                       = 120
 statistic                    = "Average"
 cpu_alarm_threshold          = 80
 elasticache_memory_threshold = 10000000
@@ -89,3 +89,7 @@ port_elastic          = 11211
 apply_immediately    = true
 
 
+//SNS
+
+protocolo = "email"
+email = "joaopaulo_jp88@hotmail.com"

@@ -141,10 +141,8 @@ resource "aws_security_group" "allow_rds" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [
-      aws_subnet.public_a.cidr_block,
-      aws_subnet.public_b.cidr_block
-    ]
+    security_groups = [aws_security_group.ec2-wordpress.id]
+    
   }
 
   egress {
@@ -169,9 +167,7 @@ resource "aws_security_group" "efs_sg" {
     from_port = 2049
     to_port   = 2049
     protocol  = "tcp"
-    cidr_blocks = [
-      aws_subnet.public_a.cidr_block,
-    aws_subnet.public_b.cidr_block]
+    security_groups = [aws_security_group.ec2-wordpress.id]
   }
 
   egress {

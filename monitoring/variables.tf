@@ -44,3 +44,17 @@ variable "instance_id_docker" {
 
 }
 
+//SNS 
+variable "protocolo" {
+
+  description = "Protocolo que enviará os alertas"
+}
+
+variable "email" {
+   description = "Email para receber alertas"
+}
+
+
+variable "aws_instance_ec2_pritunl_id" {
+
+}

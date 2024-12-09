@@ -43,10 +43,10 @@ II- Altere a variavel enviroment, conforme seu ambiente (Impactará nas tags, Ex
 
 III- Crie uma chave para poder conectar-se nas instancias(Ec2 wordpress, Ec2 docker, Ec2 Pritunl)
 create key pair linux
-ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+ssh-keygen -t rsa -b 4096 -C "infra"
 
 windows(PowerShell)
-ssh-keygen -t rsa -b 4096 -C "MyKeyPair"
+ssh-keygen -t rsa -b 4096 -C "infra"
 
 IV- Configure o caminho para o local onde salvou a chave publica gerada acima . Dentro do terraform.tfvars, altere a variavel public_key para o caminho da chave publica 
 
@@ -67,6 +67,12 @@ $ terraform plan -var-file="terraform.tfvars"
 Aplique as configurações na AWS:
 ```bash
 $ terraform apply -var-file="terraform.tfvars"
+```
+Confirme a execução digitando `yes` quando solicitado.
+
+Caso queira subir somente alguns modulos é possivel usando o comando 
+```bash
+$ terraform apply -target=module.autoscaling_template -target=module.rds -target=module.vpc -target=module.efs -target=module.loadbalancer
 ```
 Confirme a execução digitando `yes` quando solicitado.
 

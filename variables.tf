@@ -74,13 +74,6 @@ variable "key_name" {
 
 }
 
-variable "public_key" {
-  description = "path file"
-  type        = string
-
-
-}
-
 variable "ami" {
   description = "The AMI for the EC2 instance"
   type        = string
@@ -347,3 +340,13 @@ variable "apply_immediately" {
 }
 
 
+
+//SNS
+variable "protocolo" {
+
+  description = "Protocolo que enviará os alertas"
+}
+
+variable "email" {
+   description = "Email para receber alertas"
+}
