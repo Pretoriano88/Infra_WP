@@ -74,6 +74,18 @@ docker_instance_id           = "i-0abcd1234efgh5678"
 
 // autoscaling_group
 desired_capacity = 2
-max_size = 4
-min_size = 2
+max_size = 3
+min_size = 1
 version_template = "$Latest"
+
+//elasticach
+
+cluster_id           = "cluster-example"
+engine_elastic       = "memcached"
+node_type            = "cache.m4.large"
+num_cache_nodes      = 2
+parameter_group_name_elastic = "default.memcached1.6"
+port_elastic          = 11211
+apply_immediately    = true
+
+

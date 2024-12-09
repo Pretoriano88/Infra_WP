@@ -75,7 +75,7 @@ module "autoscaling_template" {
   password          = var.password
   bd_adress         = module.rds.bd_adress
   efs_dns_name      = module.efs.efs_dns_name
-  //elasticache_address = module.elasticache.elasticache_adress
+  elasticache_address = module.elasticache.elasticache_adress
   desired_capacity = var.desired_capacity
   max_size = var.max_size
   min_size = var.min_size
@@ -109,18 +109,31 @@ module "efs" {
   subnet_public_id_a    = module.vpc.subnet_public_a_id
   subnet_public_id_b    = module.vpc.subnet_public_b_id
   security_group_efs_id = module.vpc.security_group_efs_id
+  subnet_ids = [module.vpc.subnet_public_a_id,
+                module.vpc.subnet_public_b_id,
+                module.vpc.subnet_private_a_id,
+                module.vpc.subnet_private_b_id]
+  enviroment = var.enviroment
+
 }
 
-/*
+
 module "elasticache" {
   source = "./elasticache"
-
   subnet_private_a         = module.vpc.subnet_private_a_id
   subnet_private_b         = module.vpc.subnet_public_b_id
   security_group_memcached = module.vpc.security_group_memcached_id
+  cluster_id = var.cluster_id
+  engine_elastic = var.engine_elastic
+  node_type = var.node_type
+  num_cache_nodes = var.num_cache_nodes
+  port_elastic = var.port_elastic
+  apply_immediately = var.apply_immediately
+  parameter_group_name_elastic  = var.parameter_group_name_elastic
+  enviroment = var.enviroment
 
 }
-*/
+
 
 module "load_balancer" {
   source = "./loadbalancer"
@@ -158,8 +171,8 @@ module "cloudwatch_monitoring" {
   cpu_alarm_threshold          = var.cpu_alarm_threshold
   elasticache_memory_threshold = var.elasticache_memory_threshold
   autoscaling_group_name       = module.autoscaling_template.autoscaling_group_name
-  rds_instance_identifier      = var.rds_instance_identifier
-  //elasticache_cluster_id       = var.elasticache_cluster_id
-  instance_id = module.ec2_docker.instance_id
+  rds_instance_identifier      = module.rds.instance_identifier
+  elasticache_cluster_id       = module.elasticache.cluster_id
+  instance_id_docker           = module.ec2_docker.instance_id 
 
 }

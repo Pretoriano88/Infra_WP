@@ -1,12 +1,12 @@
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   alarm_name          = "HighCPUUtilization"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = var.evaluation_periods
+  evaluation_periods  = var.evaluation_periods //2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = var.period
-  statistic           = var.statistic
-  threshold           = var.cpu_alarm_threshold
+  period              = var.period  // 300
+  statistic           = var.statistic //Average 
+  threshold           = var.cpu_alarm_threshold // 80%
 
   alarm_description = "High CPU utilization alarm for EC2 instances"
   dimensions = {
@@ -34,18 +34,18 @@ resource "aws_cloudwatch_metric_alarm" "rds_cpu_utilization_alarm" {
   }
 
   actions_enabled = true
-  alarm_actions   = [] # Optional: Configure additional notifications or actions
+  alarm_actions   = [] 
 }
-/*
+
 resource "aws_cloudwatch_metric_alarm" "memcached_memory_utilization_alarm" {
   alarm_name          = "HighMemcachedMemoryUtilization"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = var.evaluation_periods
+  evaluation_periods  = var.evaluation_periods //2
   metric_name         = "FreeableMemory"
   namespace           = "AWS/ElastiCache"
-  period              = var.period
-  statistic           = var.statistic
-  threshold           = var.elasticache_memory_threshold
+  period              = var.period //300
+  statistic           = var.statistic //Average 
+  threshold           = var.elasticache_memory_threshold // 10000000
 
   alarm_description = "Low available memory alarm for ElastiCache"
   dimensions = {
@@ -53,9 +53,9 @@ resource "aws_cloudwatch_metric_alarm" "memcached_memory_utilization_alarm" {
   }
 
   actions_enabled = true
-  alarm_actions    = [] # Configure notifications
+  alarm_actions    = [] 
 }
-*/
+
 resource "aws_cloudwatch_metric_alarm" "docker_ec2_instance_alarm" {
   alarm_name          = "DockerInstanceAvailability"
   comparison_operator = "LessThanThreshold"
@@ -68,7 +68,7 @@ resource "aws_cloudwatch_metric_alarm" "docker_ec2_instance_alarm" {
 
   alarm_description = "Availability alarm for private EC2 instance running Docker"
   dimensions = {
-    InstanceId = var.instance_id
+    InstanceId = var.instance_id_docker
   }
 
   actions_enabled = true

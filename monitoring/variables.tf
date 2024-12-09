@@ -36,11 +36,11 @@ variable "rds_instance_identifier" {
   description = "The identifier of the RDS instance."
 }
 
-/*variable "elasticache_cluster_id" {
+variable "elasticache_cluster_id" {
   description = "The identifier of the ElastiCache cluster."
-}*/
+}
 
-variable "instance_id" {
+variable "instance_id_docker" {
 
 }
 

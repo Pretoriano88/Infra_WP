@@ -51,9 +51,9 @@ variable "efs_dns_name" {
 
 }
 
-/*variable "elasticache_address" {
+variable "elasticache_address" {
 
-}*/
+}
 
 // autoscaling_group
 

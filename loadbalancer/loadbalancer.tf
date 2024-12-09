@@ -1,18 +1,13 @@
 # Recurso que define o Application Load Balancer (ALB)
 resource "aws_lb" "wordpress_alb" {
-  # Nome do Load Balancer
   name = var.load_balancer_name
 
-  # Indica se o Load Balancer é interno (somente acessível dentro da VPC) ou externo (acessível da Internet)
   internal = var.lb_internal_external
 
-  # Tipo do Load Balancer, definido como "application" para Application Load Balancer
   load_balancer_type = var.load_balancer_type
 
-  # Grupos de segurança associados ao Load Balancer. Esse SG deve permitir tráfego HTTP (porta 80)
   security_groups = [var.security_group_load_balancer_id]
 
-  # Subnets em que o Load Balancer será criado, deve estar em subnets públicas para ser acessível
   subnets = [var.subnet_public_a_id, var.subnet_cidr_public_b_id]
 }
 

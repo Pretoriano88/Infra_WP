@@ -24,7 +24,7 @@ resource "aws_launch_template" "wordpress_lt" {
       wp_user_password = var.password,                           
       wp_db_host       = var.bd_adress                           
       efs_dns_name     = var.efs_dns_name
-      //elasticache_adress = var.elasticache_address
+      elasticache_adress = var.elasticache_address
     })
   )
 
