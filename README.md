@@ -60,7 +60,7 @@ $ terraform init
 ### Passo 4: Planejar a Infraestrutura
 Verifique os recursos que serão criados:
 ```bash
-$ terraform plan -var-file="terraform.tfvars"
+$ terraform plan 
 ```
 
 ### Passo 5: Criar a Infraestrutura
